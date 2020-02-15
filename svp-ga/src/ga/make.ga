@@ -1,0 +1,6 @@
+EXTPKGS   = ../../../fplll
+PKGFLAG   =
+EXTHDRS   = mt19937ar.h myrand.h global.h statistics.h chromosome.h svpchromosome.h ga.h
+
+include ../Makefile.in
+include ../Makefile.lib

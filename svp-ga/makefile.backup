@@ -1,0 +1,45 @@
+
+CXX = g++
+#CXXFLAGS = -O0 -g -Wall
+CXXFLAGS = -O2 -Wall
+#CXXFLAGS = -O2 -Wall -DSVPDEBUG
+INCLUDE = 
+TLIB = 
+
+#-----------------------Suffix Rules---------------------------
+# set up C++ suffixes and relationship between .cc and .o files
+
+.SUFFIXES: .cpp
+
+.cpp.o:
+	$(CXX) $(CXXFLAGS) $(INCLUDE) -c $< -I ../fplll --std=c++11
+
+.cpp :
+	$(CXX) $(CXXFLAGS) $(INCLUDE) $< -o $@ -lm -lmpfr -lgmp $(TLIB) -lg++
+
+#-----------------------File Dependencies----------------------
+
+GOAL = SGA
+
+SRC = ga.cpp GAmain.cpp myrand.cpp svpchromosome.cpp chromosome.cpp global.cpp mt19937ar.cpp
+
+OBJ = $(addsuffix .o, $(basename $(SRC)))
+
+$(GOAL): $(OBJ)
+	$(CXX) $(CXXFLAGS) $(INCLUDE) $(TLIB) -o $@ $(OBJ) ~/usr/lib/libfplll.a -lmpfr -lgmp -I ~/fplll --std=c++11
+
+#------------------------Other stuff----------------------------
+depend:
+	makedepend $(SRC)
+
+clean:
+	rm -f $(OBJ) $(GOAL)
+
+# DO NOT DELETE
+
+ga.o: chromosome.h svpchromosome.h myrand.h mt19937ar.h statistics.h ga.h
+GAmain.o: myrand.h mt19937ar.h global.h
+myrand.o: myrand.h mt19937ar.h
+svpchromosome.o: svpchromosome.h chromosome.h
+chromosome.o: mt19937ar.h 
+global.o: mt19937ar.h
