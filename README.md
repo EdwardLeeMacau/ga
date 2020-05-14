@@ -12,9 +12,10 @@ For SimpleGA, it's a blackbox optimization method. Without the prior knowledge o
 
 ## Outline
 
-[x] SGA Study (in C++)
-[x] ECGA Simulation (in Python 3)
-[ ] Tide up SGA Library (C++)
+- [x] SGA Study (in C++)
+- [x] ECGA Simulation (in Python 3)
+- [x] Using GA to solve Shortest Vector Problem (in C++)
+- [ ] Tide up SGA Library (C++)
 
 ## Platform
 
